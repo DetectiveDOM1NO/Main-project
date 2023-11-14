@@ -60,9 +60,9 @@ class Main(tk.Frame):
                                 command=self.view_records)
         btn_refresh.pack(side=tk.LEFT)
 
-        scroll = tk.Scrollbar(self, command=self.tree.view)
+        scroll = tk.Scrollbar(self, command=self.tree.yview)
         scroll.pack(side=tk.LEFT, fill=tk.Y)
-        self.tree.configure(yscrollcomand=scroll.set)
+        self.tree.configure(yscrollcommand=scroll.set)
 
     def open_dialog(self):
         Child()
@@ -212,8 +212,7 @@ class DB:
         self.conn = sqlite3.connect('db.db')
         self.c = self.conn.cursor()
         self.c.execute('''
-CREATE TABLE IF NOT EXISTS db (id integer primary key, name text, tel text, email text)
-''')
+CREATE TABLE IF NOT EXISTS db (id integer primary key, name text, tel text, email text)''')
         self.conn.commit()
 
     def insert_data(self, name, tel, email):
